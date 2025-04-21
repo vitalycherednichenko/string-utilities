@@ -27,5 +27,5 @@ let package = Package(
             dependencies: ["StringUtilities"]
         ),
     ],
-    swiftLanguageVersions: [.v5]
+    swiftLanguageModes: [.v5]
 )
