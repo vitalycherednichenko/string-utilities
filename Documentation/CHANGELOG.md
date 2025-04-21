@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2024-04-25
+
 ### Added
 - Initial public release of StringUtilities package
 - String validation methods (email, URL, alphanumeric, etc.)
@@ -21,9 +23,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - DateFormatter caching for improved performance
 - Efficient regular expression handling
 
+### Fixed
+- Fixed deprecated Swift Package Manager parameter (swiftLanguageVersions -> swiftLanguageModes)
+- Updated repository URLs in documentation
+
 ## [1.0.0] - 2025-04-21
 
 - Initial release
 
-[Unreleased]: https://github.com/vitalycherednichenko/StringUtilities/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/vitalycherednichenko/StringUtilities/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/vitalycherednichenko/StringUtilities/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/vitalycherednichenko/StringUtilities/releases/tag/v1.0.0 
