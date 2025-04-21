@@ -25,5 +25,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Unreleased]: https://github.com/username/StringUtilities/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/username/StringUtilities/releases/tag/v1.0.0 
+[Unreleased]: https://github.com/vitalycherednichenko/StringUtilities/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/vitalycherednichenko/StringUtilities/releases/tag/v1.0.0 

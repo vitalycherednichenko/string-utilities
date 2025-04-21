@@ -19,14 +19,13 @@ A lightweight Swift package providing useful string extension methods for everyd
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/username/StringUtilities.git", from: "1.0.0")
+    .package(url: "https://github.com/vitalycherednichenko/stringUtilities.git", from: "1.0.0")
 ]
 ```
 
 ## Requirements
 
 - Swift 6.1+
-- iOS 13.0+ / macOS 10.15+ / tvOS 13.0+ / watchOS 6.0+
 
 ## Usage
 
@@ -149,14 +148,13 @@ MIT
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/username/StringUtilities.git", from: "1.0.0")
+    .package(url: "https://github.com/vitalycherednichenko/stringUtilities.git", from: "1.0.0")
 ]
 ```
 
 ## Требования
 
 - Swift 6.1+
-- iOS 13.0+ / macOS 10.15+ / tvOS 13.0+ / watchOS 6.0+
 
 ## Использование
 

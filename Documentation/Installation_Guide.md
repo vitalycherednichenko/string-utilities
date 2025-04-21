@@ -10,7 +10,7 @@ The Swift Package Manager is the preferred way to add StringUtilities to your pr
 
 1. Open your project in Xcode
 2. Select **File > Add Packages...**
-3. Enter the repository URL: `https://github.com/username/StringUtilities.git`
+3. Enter the repository URL: `https://github.com/vitalycherednichenko/stringUtilities.git`
 4. Choose the version you want to use:
    - Select **Exact Version** for a specific version
    - Select **Up to Next Major Version** for automatic updates within the same major version
@@ -25,7 +25,7 @@ Add StringUtilities as a dependency in your `Package.swift` file:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/username/StringUtilities.git", from: "1.0.0")
+    .package(url: "https://github.com/vitalycherednichenko/stringUtilities.git", from: "1.0.0")
 ]
 ```
 
@@ -45,7 +45,7 @@ Currently, StringUtilities is not available through CocoaPods.
 
 ## Manual Installation
 
-1. Download or clone the repository: `git clone https://github.com/username/StringUtilities.git`
+1. Download or clone the repository: `git clone https://github.com/vitalycherednichenko/StringUtilities.git`
 2. Drag the `Sources/StringUtilities` folder into your Xcode project
 3. Make sure **Copy items if needed** is checked and select the appropriate targets
 4. Click **Finish**
@@ -87,7 +87,7 @@ Swift Package Manager — предпочтительный способ доба
 
 1. Откройте ваш проект в Xcode
 2. Выберите **File > Add Packages...**
-3. Введите URL репозитория: `https://github.com/username/StringUtilities.git`
+3. Введите URL репозитория: `https://github.com/vitalycherednichenko/stringUtilities.git`
 4. Выберите версию, которую хотите использовать:
    - Выберите **Exact Version** для конкретной версии
    - Выберите **Up to Next Major Version** для автоматических обновлений в пределах одной мажорной версии
@@ -102,7 +102,7 @@ Swift Package Manager — предпочтительный способ доба
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/username/StringUtilities.git", from: "1.0.0")
+    .package(url: "https://github.com/vitalycherednichenko/stringUtilities.git", from: "1.0.0")
 ]
 ```
 
@@ -122,7 +122,7 @@ targets: [
 
 ## Ручная установка
 
-1. Скачайте или клонируйте репозиторий: `git clone https://github.com/username/StringUtilities.git`
+1. Скачайте или клонируйте репозиторий: `git clone https://github.com/vitalycherednichenko/StringUtilities.git`
 2. Перетащите папку `Sources/StringUtilities` в ваш проект Xcode
 3. Убедитесь, что опция **Copy items if needed** отмечена, и выберите соответствующие цели
 4. Нажмите **Finish**
