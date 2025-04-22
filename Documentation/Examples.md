@@ -317,6 +317,171 @@ let maskedPhone = DataMasker.maskPhone(phone)
 print("Masked Phone: \(maskedPhone)")
 ```
 
+## Примеры работы со строковыми трансформациями
+
+### Преобразование между camelCase и snake_case
+
+```swift
+import StringUtilities
+
+// Преобразование из camelCase в snake_case
+let variableName = "userProfileSettings"
+let snakeCaseName = variableName.camelCaseToSnakeCase()
+print(snakeCaseName) // Выведет: "user_profile_settings"
+
+// Преобразование из snake_case в camelCase
+let databaseField = "user_first_name"
+let propertyName = databaseField.snakeCaseToCamelCase()
+print(propertyName) // Выведет: "userFirstName"
+
+// Пример использования для API
+let jsonKeys = ["first_name", "last_name", "email_address"]
+let swiftProperties = jsonKeys.map { $0.snakeCaseToCamelCase() }
+print(swiftProperties) // Выведет: ["firstName", "lastName", "emailAddress"]
+
+// Обработка особых случаев
+let uppercaseAcronym = "APIResponse"
+let snakeCase = uppercaseAcronym.camelCaseToSnakeCase()
+print(snakeCase) // Выведет: "api_response"
+```
+
+### Изменение порядка слов
+
+```swift
+import StringUtilities
+
+// Базовый пример
+let greeting = "Hello World"
+let reversed = greeting.reverseWords()
+print(reversed) // Выведет: "World Hello"
+
+// Многословное предложение
+let sentence = "Swift is a powerful and intuitive programming language"
+let reversedSentence = sentence.reverseWords()
+print(reversedSentence) // Выведет: "language programming intuitive and powerful a is Swift"
+
+// Использование для форматирования имен
+let fullName = "John Smith"
+let formalName = fullName.reverseWords()
+print(formalName) // Выведет: "Smith John"
+
+// Обработка лишних пробелов
+let textWithSpaces = "  Hello  World  "
+let cleanReversed = textWithSpaces.reverseWords()
+print(cleanReversed) // Выведет: "World Hello"
+```
+
+## Примеры локализации и интернационализации
+
+### Транслитерация кириллицы
+
+```swift
+import StringUtilities
+
+// Транслитерация русского текста
+let russianText = "Привет, мир!"
+let latinText = russianText.transliterate()
+print(latinText) // Выведет: "Privet, mir!"
+
+// Транслитерация имен
+let name = "Иванов Сергей"
+let transliteratedName = name.transliterate()
+print(transliteratedName) // Выведет: "Ivanov Sergey"
+
+// Смешанный текст
+let mixedText = "User email: ivan@example.com, имя: Иван"
+let transliterated = mixedText.transliterate()
+print(transliterated) // Выведет: "User email: ivan@example.com, imya: Ivan"
+
+// Проверка на наличие кириллицы
+if "Привет123".containsCyrillic() {
+    print("Содержит кириллические символы")
+}
+
+// Проверка на наличие латиницы
+if "Hello123".containsLatin() {
+    print("Содержит латинские символы")
+}
+```
+
+### Создание URL-безопасных строк (слагов)
+
+```swift
+import StringUtilities
+
+// Создание URL-слага из заголовка
+let articleTitle = "10 советов по программированию на Swift!"
+let urlSlug = articleTitle.slugified()
+print(urlSlug) // Выведет: "10-sovetov-po-programmirovaniyu-na-swift"
+
+// Обработка специальных символов
+let titleWithSymbols = "С++ vs C#: что выбрать в 2024?"
+let cleanSlug = titleWithSymbols.slugified()
+print(cleanSlug) // Выведет: "c-vs-c-chto-vybrat-v-2024"
+
+// Использование для генерации идентификаторов
+func generateIdFromTitle(_ title: String) -> String {
+    return "article-\(title.slugified())"
+}
+let id = generateIdFromTitle("Новая статья! Читайте скорее.")
+print(id) // Выведет: "article-novaya-statya-chitajte-skoree"
+```
+
+### URL-кодирование и декодирование
+
+```swift
+import StringUtilities
+
+// Кодирование URL со специальными символами
+let searchQuery = "Swift программирование"
+let encodedQuery = searchQuery.urlEncoded()
+print(encodedQuery) // Выведет: "Swift%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5"
+
+// Использование в URL
+let baseURL = "https://example.com/search?"
+let parameter = "q=\(searchQuery.urlEncoded())"
+let fullURL = baseURL + parameter
+print(fullURL)
+
+// Декодирование URL
+let encoded = "Hello%20World%21"
+let decoded = encoded.urlDecoded()
+print(decoded) // Выведет: "Hello World!"
+
+// Комбинирование с другими методами
+let userInput = "  Swift & Objective-C  "
+let cleanInput = userInput.trimmed().lowercased()
+let urlParam = cleanInput.urlEncoded()
+print(urlParam) // Выведет: "swift%20%26%20objective-c"
+```
+
+### Экранирование HTML и XML
+
+```swift
+import StringUtilities
+
+// Экранирование HTML-разметки
+let userComment = "<script>alert('XSS attack')</script>"
+let safeComment = userComment.escapedForHTML()
+print(safeComment) // Выведет: "&lt;script&gt;alert('XSS attack')&lt;/script&gt;"
+
+// Экранирование атрибутов
+let userName = "John \"Hacker\" Doe"
+let safeAttr = userName.escapedForHTML()
+print("<div title=\"\(safeAttr)\">") // Атрибут будет безопасно экранирован
+
+// Экранирование для XML
+let xmlData = "<user>John & Jane</user>"
+let safeXML = xmlData.escapedForXML()
+print(safeXML) // Выведет: "&lt;user&gt;John &amp; Jane&lt;/user&gt;"
+
+// Использование в веб-приложении
+func renderUserContent(_ content: String) -> String {
+    let escapedContent = content.escapedForHTML()
+    return "<div class=\"user-content\">\(escapedContent)</div>"
+}
+```
+
 ---
 
 # Примеры StringUtilities

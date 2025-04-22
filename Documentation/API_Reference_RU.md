@@ -457,4 +457,87 @@ func replacing(pattern: String, with replacement: String) -> String
 ```swift
 "Мой телефон: 123-456-7890".replacing(pattern: "\\d{3}-\\d{3}-\\d{4}", with: "XXX-XXX-XXXX")
 // "Мой телефон: XXX-XXX-XXXX"
+```
+
+## Тестирование
+
+Библиотека StringUtilities имеет полное покрытие тестами. Тесты организованы по функциональным группам:
+
+- **StringTransformTests**: базовые преобразования строк (переворот, изменение регистра, обрезка)
+- **StringFormattingTests**: форматирование строк (первая буква заглавная, titlecase, обрезка пробелов, удаление лишних пробелов)
+- **StringSubstringTests**: работа с подстроками (получение части строки, поиск подстрок)
+- **StringRegexTests**: работа с регулярными выражениями
+- **StringDateTests**: конвертация между датой и строкой
+- **StringValidationTests**: методы валидации (проверка email, URL и т.д.)
+- **StringLocalizationTests**: локализация, транслитерация, экранирование
+
+Для запуска тестов:
+
+```bash
+swift test
+```
+
+## Форматирование кода и стиль
+
+Код в библиотеке StringUtilities отформатирован согласно стандартным правилам форматирования Swift:
+
+1. Используйте 4 пробела для отступов
+2. Открывающие скобки на той же строке
+3. Максимальная длина строки 100 символов
+4. Все публичные API имеют документацию
+5. Используйте camelCase для методов и свойств
+
+## Дополнительные методы
+
+### Преобразование между camelCase и snake_case
+
+```swift
+"helloWorld".camelCaseToSnakeCase() // Возвращает "hello_world"
+"hello_world".snakeCaseToCamelCase() // Возвращает "helloWorld"
+```
+
+### Изменение порядка слов
+
+```swift
+"Hello World".reverseWords() // Возвращает "World Hello"
+```
+
+### Экранирование HTML и XML
+
+```swift
+"<div>".escapedForHTML() // Возвращает "&lt;div&gt;"
+"<tag>".escapedForXML() // Возвращает "&lt;tag&gt;"
+```
+
+### Проверка наличия специфических символов
+
+```swift
+"Привет".containsCyrillic() // Возвращает true
+"Hello".containsLatin() // Возвращает true
+```
+
+### Транслитерация
+
+```swift
+"Привет".transliterate() // Возвращает "Privet"
+```
+
+### URL-кодирование и декодирование
+
+```swift
+"Hello World".urlEncoded() // Возвращает "Hello%20World"
+"Hello%20World".urlDecoded() // Возвращает "Hello World"
+```
+
+### Создание слагов для URL
+
+```swift
+"Hello World".slugified() // Возвращает "hello-world"
+```
+
+### Нормализация
+
+```swift
+let combinedE = "e\u{0301}" // e + знак ударения
+combinedE.normalized() // Возвращает "\u{00E9}" (é как один символ)
 ``` 

@@ -217,6 +217,117 @@ func formatUserInput(_ text: String, locale: Locale) -> String {
 }
 ```
 
+## Локализация и работа с Unicode
+
+### Транслитерация кириллицы
+
+```swift
+// Транслитерация русского текста
+let russianText = "Привет, мир!"
+let latinText = russianText.transliterate() // "Privet, mir!"
+
+// Проверка кириллических символов
+if text.containsCyrillic() {
+    // Содержит кириллические символы
+}
+```
+
+### Создание URL-безопасных строк
+
+```swift
+// Создание слагов для URL из заголовков
+let title = "Привет, мир! Это пример."
+let slug = title.slugified() // "privet-mir-eto-primer"
+
+// Кодирование URL
+let unsafeString = "Привет, мир!"
+let urlSafe = unsafeString.urlEncoded() // "%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%2C%20%D0%BC%D0%B8%D1%80!"
+```
+
+### Нормализация строк
+
+```swift
+// Нормализация комбинированных символов
+let combinedString = "e\u{0301}" // e + знак ударения
+let normalizedString = combinedString.normalized() // "é" как один символ
+
+// Важно для сравнения строк с диакритическими знаками
+if userInput.normalized() == storedValue.normalized() {
+    // Строки совпадают после нормализации
+}
+```
+
+## Преобразование регистра и формата
+
+### Преобразование между camelCase и snake_case
+
+```swift
+// Преобразование из camelCase в snake_case
+let camelCase = "helloWorld"
+let snakeCase = camelCase.camelCaseToSnakeCase() // "hello_world"
+
+// Преобразование из snake_case в camelCase
+let snakeVar = "hello_world"
+let camelVar = snakeVar.snakeCaseToCamelCase() // "helloWorld"
+
+// Полезно при работе с разными API и форматами данных
+func convertToApiFormat(parameters: [String: Any]) -> [String: Any] {
+    // Преобразование ключей из camelCase в snake_case для API
+    return parameters.reduce(into: [String: Any]()) { result, pair in
+        result[pair.key.camelCaseToSnakeCase()] = pair.value
+    }
+}
+```
+
+### Изменение порядка слов
+
+```swift
+// Изменение порядка слов в строке
+let phrase = "Hello World"
+let reversed = phrase.reverseWords() // "World Hello"
+
+// Полезно для форматирования имен
+let fullName = "John Smith"
+let reversedName = fullName.reverseWords() // "Smith John"
+```
+
+## Экранирование специальных символов
+
+### Безопасная работа с HTML и XML
+
+```swift
+// Экранирование HTML
+let htmlContent = "<div>User input: \"quoted\"</div>"
+let safeHtml = htmlContent.escapedForHTML() 
+// "&lt;div&gt;User input: &quot;quoted&quot;&lt;/div&gt;"
+
+// Экранирование XML
+let xmlContent = "<tag>User input: 'quoted'</tag>"
+let safeXml = xmlContent.escapedForXML()
+// "&lt;tag&gt;User input: &apos;quoted&apos;&lt;/tag&gt;"
+```
+
+### Рекомендации по экранированию в веб-приложениях
+
+```swift
+// Для вывода в HTML всегда экранируйте пользовательский ввод
+func safeUserContent(_ content: String) -> String {
+    return content.escapedForHTML()
+}
+
+// Для API всегда проверяйте корректность входных данных
+func validateAndEscapeUserInput(_ input: String) -> String? {
+    guard !input.isEmpty else {
+        return nil // Пустой ввод не допускается
+    }
+    
+    // Удаляем потенциально опасные символы
+    let safeInput = input.replacingOccurrences(of: "<script>", with: "")
+    
+    return safeInput.escapedForHTML()
+}
+```
+
 ---
 
 # Лучшие практики StringUtilities
